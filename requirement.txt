@@ -1,0 +1,6 @@
+argparse 
+numpy 
+shapely 
+scipy 
+paho.mqtt.client 
+confluent_kafka
