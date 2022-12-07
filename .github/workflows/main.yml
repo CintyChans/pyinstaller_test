@@ -1,0 +1,26 @@
+name: Package Application with Pyinstaller
+
+on:
+  push:
+    branches: [ linux ]
+  pull_request:
+    branches: [ linux ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: PyInstaller Linux amd64
+      id: amd64
+      uses: action-python/pyinstaller-py3.8@amd64
+      with:
+        path: .
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: M_Test
+        path: ./dist/linux
