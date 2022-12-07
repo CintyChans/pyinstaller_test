@@ -40,22 +40,6 @@ class Window(Tk):
         self.predict=Label(self.frame1,textvariable=self.predictval,font=('黑体', 50))
         self.predict.grid(row=1,column=3)
         self.frame1.pack()
-        self.fig,self.ax=plt.subplots(subplot_kw={"projection": "3d"})
-        self.ax.set_zlim(0, 4)
-        X= np.linspace(0, 8,8)
-        self.X,self.Y=np.meshgrid(X,X)
-        self.Z=np.zeros((8,8))
-        self.surf = self.ax.plot_surface(self.X,self.Y,self.Z, rstride=1,cstride=1,cmap = 'summer')
-        self.canvas = FigureCanvasTkAgg(self.fig, master=self)  
-        self.ani = animation.FuncAnimation(self.fig, self.animate, blit=False)
-        self.canvas.get_tk_widget().pack(fill='both', expand=True)
-
-
-    def animate(self,frame_number):
-        if self.connecting:
-            self.surf.remove()
-            self.surf=self.ax.plot_surface(self.X,self.Y,self.Z, rstride=1,cstride=1,cmap = 'summer')
-            return self.surf,
 
 
 
