@@ -2,5 +2,5 @@ argparse
 numpy 
 shapely 
 scipy 
-paho.mqtt.client 
+paho_mqtt
 confluent_kafka
