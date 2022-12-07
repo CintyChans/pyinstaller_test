@@ -9,15 +9,19 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+      
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python 3.9.15
+      - name: Set up Python 3.9.13
         uses: actions/setup-python@v4
         with:
           # Semantic version range syntax or exact version of a Python version
-          python-version: '3.9.15'
+          python-version: '3.9.13'
           
       - name: Install dependencies
         run: |
@@ -30,4 +34,10 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: exe
+          
+          
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ runner.os }} EXE
           path: ./dist
