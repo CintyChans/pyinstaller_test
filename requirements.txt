@@ -4,3 +4,4 @@ shapely
 scipy 
 paho_mqtt
 confluent_kafka
+pyinstaller
