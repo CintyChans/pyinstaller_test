@@ -11,17 +11,17 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-20.04]
       
     runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python 3.9
+      - name: Set up Python 3.9.13
         uses: actions/setup-python@v4
         with:
           # Semantic version range syntax or exact version of a Python version
-          python-version: '3.9.0'
+          python-version: '3.9.13'
           
       - name: Install dependencies
         run: |
