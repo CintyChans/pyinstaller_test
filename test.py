@@ -34,10 +34,13 @@ def test():
 
     line = LineString([(0, 0), (1, 1)])
     print('shapely:',line)
-
-    args = parser.parse_args()
-    if args.line:
-        print('argparse:',args.line)
+    try:
+        args = parser.parse_args()
+        if args.line:
+            print('argparse:',args.line)
+    except:
+        pass
+    
 
     print('numpy:',np.array([1,2,3]))
 
