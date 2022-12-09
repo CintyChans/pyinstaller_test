@@ -39,20 +39,25 @@ class Recorder():
     def close(self):
         self.client.disconnect()
 
-Recorder()
-
-conf = {'bootstrap.servers':'127.0.0.1:9092', 'group.id':f"utc_{time.time()}",'session.timeout.ms': 6000,'auto.offset.reset': 'latest', 'enable.auto.commit': True}
-topics ='kafka'
-consumer = kafka.Consumer(conf) 
-consumer.subscribe([topics])
-
-while 1:         
-    msg = consumer.poll(timeout=1.0)   
+        
+def test():
     try:
-        if msg is None:
-            continue
-        else:
-            print('kafka_recieve:',msg.value())
-    except Exception as e:
-        print(e)
-        continue
+        Recorder()
+        conf = {'bootstrap.servers':'127.0.0.1:9092', 'group.id':f"utc_{time.time()}",'session.timeout.ms': 6000,'auto.offset.reset': 'latest', 'enable.auto.commit': True} topics ='kafka'
+        consumer = kafka.Consumer(conf) 
+        consumer.subscribe([topics])
+
+        while 1:         
+            msg = consumer.poll(timeout=1.0)   
+            try:
+                if msg is None:
+                    continue
+                else:
+                    print('kafka_recieve:',msg.value())
+            except Exception as e:
+                print(e)
+        except Exception as e:
+            print(e)
+          
+test()
+
