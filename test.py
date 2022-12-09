@@ -6,19 +6,7 @@ from scipy import constants
 import paho.mqtt.client as mqtt
 import confluent_kafka as kafka
 from threading import Thread
-parser = argparse.ArgumentParser(description='Demo of argparse')
-parser.add_argument('--line', type=int, default=1)
 
-line = LineString([(0, 0), (1, 1)])
-print('shapely:',line)
-
-args = parser.parse_args()
-if args.line:
-    print('argparse:',args.line)
-
-print('numpy:',np.array([1,2,3]))
-
-print('scipy:',constants.pi)
 
 class Recorder():
     def __init__(self):
@@ -41,23 +29,36 @@ class Recorder():
 
         
 def test():
+    parser = argparse.ArgumentParser(description='Demo of argparse')
+    parser.add_argument('--line', type=int, default=1)
+
+    line = LineString([(0, 0), (1, 1)])
+    print('shapely:',line)
+
+    args = parser.parse_args()
+    if args.line:
+        print('argparse:',args.line)
+
+    print('numpy:',np.array([1,2,3]))
+
+    print('scipy:',constants.pi)
     try:
         Recorder()
         conf = {'bootstrap.servers':'127.0.0.1:9092', 'group.id':f"utc_{time.time()}",'session.timeout.ms': 6000,'auto.offset.reset': 'latest', 'enable.auto.commit': True} 
         topics ='kafka'
         consumer = kafka.Consumer(conf) 
         consumer.subscribe([topics])
-
-        while 1:         
-            msg = consumer.poll(timeout=1.0)   
-            try:
-                if msg is None:
-                    continue
-                else:
-                    print('kafka_recieve:',msg.value())
-            except Exception as e:
-                print(e)
-                break
+        msg = consumer.poll(timeout=1.0) 
+#         while 1:         
+#             msg = consumer.poll(timeout=1.0)   
+#             try:
+#                 if msg is None:
+#                     continue
+#                 else:
+#                     print('kafka_recieve:',msg.value())
+#             except Exception as e:
+#                 print(e)
+#                 break
     except Exception as e:
         print(e)
           
