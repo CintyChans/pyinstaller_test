@@ -57,8 +57,9 @@ def test():
                     print('kafka_recieve:',msg.value())
             except Exception as e:
                 print(e)
-        except Exception as e:
-            print(e)
+                break
+    except Exception as e:
+        print(e)
           
 test()
 
