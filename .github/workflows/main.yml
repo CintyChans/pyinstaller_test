@@ -1,26 +1,37 @@
-name: Package Application with Pyinstaller
+name: Python application
 
 on:
   push:
-    branches: [ linux ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ linux ]
+    branches: [ "main" ]
+
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [macos-10.15, ubuntu-20.04, windows-latest]
+      
+    runs-on: ${{ matrix.os }}
 
     steps:
-    - uses: actions/checkout@v2
-
-    - name: PyInstaller Linux amd64
-      id: amd64
-      uses: action-python/pyinstaller-py3.8@amd64
-      with:
-        path: .
-
-    - uses: actions/upload-artifact@v2
-      with:
-        name: M_Test
-        path: ./dist/linux
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.9.13
+        uses: actions/setup-python@v4
+        with:
+          # Semantic version range syntax or exact version of a Python version
+          python-version: '3.9.13'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt 
+          pip install pytest
+    
+      - name: python running
+        run: python3 test.py 
+                
+          
+      - name: test
+        run: pytest test.py
