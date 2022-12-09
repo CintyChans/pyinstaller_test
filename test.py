@@ -43,7 +43,8 @@ class Recorder():
 def test():
     try:
         Recorder()
-        conf = {'bootstrap.servers':'127.0.0.1:9092', 'group.id':f"utc_{time.time()}",'session.timeout.ms': 6000,'auto.offset.reset': 'latest', 'enable.auto.commit': True} topics ='kafka'
+        conf = {'bootstrap.servers':'127.0.0.1:9092', 'group.id':f"utc_{time.time()}",'session.timeout.ms': 6000,'auto.offset.reset': 'latest', 'enable.auto.commit': True} 
+        topics ='kafka'
         consumer = kafka.Consumer(conf) 
         consumer.subscribe([topics])
 
