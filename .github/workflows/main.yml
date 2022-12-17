@@ -27,12 +27,13 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt 
+          pip install pytest
+    
+      - name: python running
+        run: python3 test.py 
+                
           
-          
-      - name: python compile
-        run: python test.py
-        
-      - name: pytest
+      - name: test
         run: pytest test.py
     
       - name: pyinstaller package
