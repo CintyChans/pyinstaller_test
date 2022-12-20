@@ -1,12 +1,13 @@
 name: Python application
 
+#设置指定分支
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
-
+#设置操作系统
 jobs:
   build:
     strategy:
