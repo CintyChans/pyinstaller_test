@@ -17,28 +17,32 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+       #安装python
       - name: Set up Python 3.9.13
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v4 
         with:
-          # Semantic version range syntax or exact version of a Python version
           python-version: '3.9.13'
           
+       #安装pip以及安装第三方库
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt 
           pip install pytest
-    
+       
+       #编译test.py
       - name: python running
-        run: python3 test.py 
-                
-          
+        run: python3 test.py              
+       
+       #单元测试
       - name: test
         run: pytest test.py
-    
+     
+       #pyinstaller打包test.py
       - name: pyinstaller package
         run: pyinstaller  -F test.py 
-                       
+          
+       #上传文件
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
