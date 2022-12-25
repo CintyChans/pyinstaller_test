@@ -10,12 +10,15 @@ from test_pb2 import *
 class test_mqtt():
     def __init__(self):
         super().__init__()
-        self.client = mqtt.Client()
-        self.client.on_connect = self.on_connect
-        self.client.on_message =self.on_message
-        self.client.connect(host="127.0.0.1", port=1883, keepalive=10)   # 订阅频道
-        self.client.subscribe('mqtt',0)
-        self.client.loop_start()
+        try:
+            self.client = mqtt.Client()
+            self.client.on_connect = self.on_connect
+            self.client.on_message =self.on_message
+            self.client.connect(host="127.0.0.1", port=1883, keepalive=10)   # 订阅频道
+            self.client.subscribe('mqtt',0)
+            self.client.loop_start()
+        except Exception as e
+            print(e)
 
     def on_connect(self,client, userdata, flags, rc):
         print("Connected with result code " + str(rc))
