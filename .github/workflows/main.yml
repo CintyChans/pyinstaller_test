@@ -29,19 +29,19 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt 
-          pip install pytest
+          protoc -I. --python_out=. ./test.proto
        
        #编译test.py
       - name: python running
-        run: python3 test.py              
+        run: python3 main.py              
        
        #单元测试
       - name: test
-        run: pytest test.py
+        run: pytest test_main.py
      
        #pyinstaller打包test.py
       - name: pyinstaller package
-        run: pyinstaller  -F test.py 
+        run: pyinstaller  -F main.py 
           
        #上传文件
       - name: Upload Artifacts
