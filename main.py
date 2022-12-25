@@ -17,7 +17,7 @@ class test_mqtt():
             self.client.connect(host="127.0.0.1", port=1883, keepalive=10)   # 订阅频道
             self.client.subscribe('mqtt',0)
             self.client.loop_start()
-        except Exception as e
+        except Exception as e:
             print(e)
 
     def on_connect(self,client, userdata, flags, rc):
