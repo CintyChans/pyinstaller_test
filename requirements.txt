@@ -7,3 +7,4 @@ confluent_kafka
 pyinstaller
 protobuf
 pytest
+grpcio-tools
