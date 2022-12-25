@@ -5,16 +5,15 @@ import time
 from scipy import constants
 import paho.mqtt.client as mqtt
 import confluent_kafka as kafka
-from threading import Thread
+from test_pb2 import *
 
-
-class Recorder():
+class test_mqtt():
     def __init__(self):
         super().__init__()
         self.client = mqtt.Client()
         self.client.on_connect = self.on_connect
         self.client.on_message =self.on_message
-        self.client.connect(host="127.0.0.1", port=1883, keepalive=65535)   # 订阅频道
+        self.client.connect(host="127.0.0.1", port=1883, keepalive=10)   # 订阅频道
         self.client.subscribe('mqtt',0)
         self.client.loop_start()
 
@@ -27,43 +26,56 @@ class Recorder():
     def close(self):
         self.client.disconnect()
 
-        
-def test():
+def test_proto():
+    person=MsgPerson()
+    person.id=1
+    print(person.id)
+    return person
+def test_argparse():
     parser = argparse.ArgumentParser(description='Demo of argparse')
     parser.add_argument('--line', type=int, default=1)
-
-    line = LineString([(0, 0), (1, 1)])
-    print('shapely:',line)
-    try:
-        args = parser.parse_args()
-        if args.line:
+    args = parser.parse_args()
+    if args.line:
             print('argparse:',args.line)
-    except:
-        pass
-    
+    print(args.line)
+    return args.line
 
-    print('numpy:',np.array([1,2,3]))
+def test_shapely():
+    line = LineString([(0, 0), (1, 1)])
+    print(line)
+    return line
 
-    print('scipy:',constants.pi)
-    try:
-        Recorder()
-        conf = {'bootstrap.servers':'127.0.0.1:9092', 'group.id':f"utc_{time.time()}",'session.timeout.ms': 6000,'auto.offset.reset': 'latest', 'enable.auto.commit': True} 
-        topics ='kafka'
-        consumer = kafka.Consumer(conf) 
-        consumer.subscribe([topics])
-        msg = consumer.poll(timeout=1.0) 
-#         while 1:         
-#             msg = consumer.poll(timeout=1.0)   
-#             try:
-#                 if msg is None:
-#                     continue
-#                 else:
-#                     print('kafka_recieve:',msg.value())
-#             except Exception as e:
-#                 print(e)
-#                 break
-    except Exception as e:
-        print(e)
+def test_numpy():
+    a=np.array([1,2,3])
+    print(a)
+    return a
+def test_scipy():
+    p=constants.pi
+    print(p)
+    return p
+
+def test_kafka():
+    conf = {'bootstrap.servers':'127.0.0.1:9092', 'group.id':f"utc_{time.time()}",'session.timeout.ms': 6000,'auto.offset.reset': 'latest', 'enable.auto.commit': True} 
+    topics ='kafka'
+    consumer = kafka.Consumer(conf) 
+    consumer.subscribe([topics])
+    msg = consumer.poll(timeout=1.0) 
+    while 1:         
+        msg = consumer.poll(timeout=1.0)   
+        try:
+            if msg is None:
+                continue
+            else:
+                print('kafka_recieve:',msg.value())
+        except Exception as e:
+            print(e)
+            break
           
-test()
-
+if __name__=='__main__':
+    test_proto()
+    test_argparse()
+    test_numpy()
+    test_scipy()
+    test_shapely()
+    test_mqtt()
+    test_kafka()
