@@ -24,8 +24,9 @@ jobs:
         with:
           python-version: '3.9.13'
           
-      - name: Install Protoc
-        uses: arduino/setup-protoc@v1
+      - name: Setup protoc
+        uses: arduino/setup-protoc@v1.1.2
+
         
        #安装pip以及安装第三方库
       - name: Install dependencies
