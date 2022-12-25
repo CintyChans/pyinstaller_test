@@ -24,8 +24,10 @@ jobs:
         with:
           python-version: '3.9.13'
           
-      - name: Setup protoc
-        uses: arduino/setup-protoc@v1.1.2
+      - name: Genereate code for squzy-storage protofile
+        uses: PxyUp/protoc-actions@v3.0.0
+        with:
+          path: -I. --python_out=.  ./test.proto
 
         
        #安装pip以及安装第三方库
@@ -33,7 +35,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt 
-          protoc -I. --python_out=.  ./test.proto
+         # protoc -I. --python_out=.  ./test.proto
        # 编译test.py
       - name: python running
         run: python3 main.py              
