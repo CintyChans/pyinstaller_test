@@ -39,7 +39,7 @@ jobs:
        
        #单元测试
       - name: test
-        run: pytest test_main.py --line 2    
+        run: pytest test_main.py 
      
        #pyinstaller打包test.py
       - name: pyinstaller package
