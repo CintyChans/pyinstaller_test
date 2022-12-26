@@ -37,13 +37,14 @@ def f2():
     print(person.id)
     return person
 def f3():
-    parser = argparse.ArgumentParser(description='Demo of argparse')
-    parser.add_argument('--line', type=int, default=1)
-    args = parser.parse_args()
-    if args.line:
-       print('argparse:',args.line)
-    print(args)
-    return args
+    if __name__ == "__main__":
+        parser = argparse.ArgumentParser(description='Demo of argparse')
+        parser.add_argument('--line', type=int, default=1)
+        args = parser.parse_args()
+        if args.line:
+            print('argparse:',args.line)
+        print(args)
+        return args
 
 def f4():
     line = LineString([(0, 0), (1, 1)])
