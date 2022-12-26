@@ -6,7 +6,7 @@ from scipy import constants
 import paho.mqtt.client as mqtt
 import confluent_kafka as kafka
 from test_pb2 import *
-import geos
+import shapely
 
 
 class f1():
