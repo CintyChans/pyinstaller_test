@@ -68,7 +68,7 @@ def test_kafka():
             msg = consumer.poll(timeout=1.0)   
             try:
                 if msg is None:
-                    continue
+                    break
                 else:
                     print('kafka_recieve:',msg.value())
             except Exception as e:
