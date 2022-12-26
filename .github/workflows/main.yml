@@ -35,11 +35,11 @@ jobs:
           python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./test.proto
        # 编译test.py
       - name: python running
-        run: python3 main.py              
+        run: python3 main.py --line 2            
        
        #单元测试
       - name: test
-        run: pytest test_main.py
+        run: pytest test_main.py --line 2    
      
        #pyinstaller打包test.py
       - name: pyinstaller package
