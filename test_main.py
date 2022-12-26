@@ -2,11 +2,11 @@ import unittest
 import main
 import numpy as np
 class TestDemo(unittest.TestCase):
-     def setUp(self) -> None:
+     def setUp(self):
         print('setUp')
  
     # 用例的后置清理
-    def tearDown(self) -> None:
+    def tearDown(self):
         print('tearDown')
     def test_demo_1(self):
       person=main.f2()
