@@ -6,3 +6,4 @@ confluent_kafka
 pyinstaller
 protobuf
 grpcio-tools
+shapely==1.8.5
