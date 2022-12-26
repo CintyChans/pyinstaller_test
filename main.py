@@ -7,6 +7,10 @@ import paho.mqtt.client as mqtt
 import confluent_kafka as kafka
 from test_pb2 import *
 
+parser = argparse.ArgumentParser(description='Demo of argparse')
+parser.add_argument('--line', type=int, default=1)
+args = parser.parse_args()
+
 class test_mqtt():
     def __init__(self):
         super().__init__()
@@ -35,13 +39,10 @@ def test_proto():
     print(person.id)
     return person
 def test_argparse():
-    parser = argparse.ArgumentParser(description='Demo of argparse')
-    parser.add_argument('--line', type=int, default=1)
-    args = parser.parse_args()
     if args.line:
-            print('argparse:',args.line)
-    print(args.line)
-    return args.line
+       print('argparse:',args.line)
+    print(args)
+    return args
 
 def test_shapely():
     line = LineString([(0, 0), (1, 1)])
