@@ -1,13 +1,22 @@
-from main import *
-import argparse
-def test_1():
-  f1()
-  f2()
-  f3()
-  f5()
-  f4()
-  f6()
-  f7()
+import unittest
+import main
+import numpy as np
+class TestDemo(unittest.TestCase):
+     def setUp(self) -> None:
+        print('setUp')
+ 
+    # 用例的后置清理
+    def tearDown(self) -> None:
+        print('tearDown')
+    def test_demo_1(self):
+      person=main.f2()
+      self.assertEqual(person.id,1)
+      
+    def test_demo_2(self):
+      self.assertEqual(main.f5(),np.array([1,2,3]))
   
-  
+    def test_demo_3(self):
+      self.assertTrue(main.f6()!=3.14)
 
+if __name__ == '__main__':
+    unittest.main()
