@@ -11,7 +11,7 @@ parser = argparse.ArgumentParser(description='Demo of argparse')
 parser.add_argument('--line', type=int, default=1)
 args = parser.parse_args()
 
-class test_mqtt():
+class f1():
     def __init__(self):
         super().__init__()
         try:
@@ -33,32 +33,32 @@ class test_mqtt():
     def close(self):
         self.client.disconnect()
 
-def test_proto():
+def f2():
     person=MsgPerson()
     person.id=1
     print(person.id)
     return person
-def test_argparse():
+def f3():
     if args.line:
        print('argparse:',args.line)
     print(args)
     return args
 
-def test_shapely():
+def f4():
     line = LineString([(0, 0), (1, 1)])
     print(line)
     return line
 
-def test_numpy():
+def f5():
     a=np.array([1,2,3])
     print(a)
     return a
-def test_scipy():
+def f6():
     p=constants.pi
     print(p)
     return p
 
-def test_kafka():
+def f7():
     try:
         conf = {'bootstrap.servers':'127.0.0.1:9092', 'group.id':f"utc_{time.time()}",'session.timeout.ms': 6000,'auto.offset.reset': 'latest', 'enable.auto.commit': True} 
         topics ='kafka'
@@ -79,10 +79,10 @@ def test_kafka():
         print(e)
           
 if __name__=='__main__':
-    test_proto()
-    test_argparse()
-    test_numpy()
-    test_scipy()
-    test_shapely()
-    test_mqtt()
-    test_kafka()
+    f1()
+    f2()
+    f3()
+    f4()
+    f5()
+    f6()
+    f7()
