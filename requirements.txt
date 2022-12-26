@@ -6,5 +6,5 @@ paho_mqtt
 confluent_kafka
 pyinstaller
 protobuf
-pytest
+unittest
 grpcio-tools
