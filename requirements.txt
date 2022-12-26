@@ -1,6 +1,7 @@
 argparse 
 numpy 
 shapely 
+geos
 scipy 
 paho_mqtt
 confluent_kafka
