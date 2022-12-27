@@ -56,7 +56,7 @@ def f5():
     return a
 def f6():
     p=constants.pi
-    print(p
+    print(p)
     return p
 
 def f7():
