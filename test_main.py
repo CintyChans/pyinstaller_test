@@ -13,7 +13,7 @@ class TestDemo(unittest.TestCase):
       
      def test_demo_2(self):
           x=main.f5()
-          self.assertTrue(1 in x)
+          self.assertTrue(4 in x)
   
      def test_demo_3(self):
           self.assertTrue(main.f6()!=3.14)
