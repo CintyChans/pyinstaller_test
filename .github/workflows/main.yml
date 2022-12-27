@@ -57,8 +57,7 @@ jobs:
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
-          title: 'v0.0.1'
-          automatic_release_tag: 'v0.0.1'
+          automatic_release_tag: 'v0.0.2'
           files: CHANGELOG.txt
 
             
