@@ -47,7 +47,7 @@ jobs:
           path: ./dist
       
       - name: Generate Changelog
-        run: echo "# Good things have arrived" > ${{ github.workspace }}-CHANGELOG.txt
+        run: echo "# Good things have arrived" >CHANGELOG.txt
       - name: Create Release and Upload Release Asset
         uses: softprops/action-gh-release@v1
         with:
@@ -57,5 +57,6 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            CHANGELOG.txt
             ./dist
+            CHANGELOG.txt
+            
