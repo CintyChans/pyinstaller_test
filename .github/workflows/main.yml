@@ -50,12 +50,12 @@ jobs:
         run: echo "# Good things have arrived" > ${{ github.workspace }}-CHANGELOG.txt
       - name: Create Release and Upload Release Asset
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
           body_path: ${{ github.workspace }}-CHANGELOG.txt
-          tag_name: ${{ github.ref }}
-          name: Release ${{ github.ref }}
+          tag_name: 'v0.0.1'
           body: TODO New Release.
           draft: false
           prerelease: false
-          files: ./dist
+          files: |
+            CHANGELOG.txt
+            ./dist
