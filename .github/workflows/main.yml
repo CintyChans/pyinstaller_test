@@ -50,12 +50,12 @@ jobs:
         run: echo "# Good things have arrived" >CHANGELOG.txt
         
       - name: Create Release and Upload Release Asset
-        uses: "marvinpinto/action-automatic-releases@latest"
+        uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
-          title: ${{ runner.os }}
-          automatic_release_tag: 'v0.0.1'
+          title: 'v0.0.1'
+          automatic_release_tag: ${{ runner.os }}
           files: |
             ./dist
             CHANGELOG.txt
