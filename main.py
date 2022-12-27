@@ -6,7 +6,6 @@ from scipy import constants
 import paho.mqtt.client as mqtt
 import confluent_kafka as kafka
 from test_pb2 import *
-import shapely
 
 
 class f1():
@@ -57,7 +56,7 @@ def f5():
     return a
 def f6():
     p=constants.pi
-    print(p)
+    print(p
     return p
 
 def f7():
