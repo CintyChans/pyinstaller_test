@@ -49,14 +49,14 @@ jobs:
       - name: Generate Changelog
         run: echo "# Good things have arrived" >CHANGELOG.txt
         
-      - name: Create Release and Upload Release Asset
-        uses: marvinpinto/action-automatic-releases@v1.2.1
+      - name: Create Release
+        id: create_release
+        uses: nickatnight/releases-action@v3
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
-          title: 'v0.0.1'
-          automatic_release_tag: ${{ runner.os }}
-          files: |
-            ./dist
-            CHANGELOG.txt
+          branch: "main"
+          name: "Gryffindor Release"
+          message: "Yer a wizard Harry"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
