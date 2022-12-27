@@ -60,4 +60,4 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           files: ./dist
-          automatic_release_tag: latest
+          automatic_release_tag: ${{ runner.os }}-latest
