@@ -52,3 +52,12 @@ jobs:
         with:
           name: ${{ runner.os }} pyinstaller
           path: ./dist
+          
+      - uses: CupOfTea696/gh-action-auto-release@v1.0.0
+        with:
+          title: "Release: $version"
+          tag: "v$semver"
+          draft: false
+          regex: "/^Release: #{semver}$/i"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
