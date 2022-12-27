@@ -54,6 +54,7 @@ jobs:
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
+          title: ${{ runner.os }}
           automatic_release_tag: 'v0.0.1'
           files: |
             ./dist
