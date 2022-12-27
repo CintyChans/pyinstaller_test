@@ -1,10 +1,7 @@
 name: Python application
 
 #设置指定分支
-on:
-  push:
-    tags:
-      - "v*"
+on: push
 
 #设置操作系统
 jobs:
