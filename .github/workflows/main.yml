@@ -1,7 +1,9 @@
 name: Python application
 
-#设置指定分支
-on: push
+on:
+  push:
+    tags:
+      - "v*"
 
 #设置操作系统
 jobs:
@@ -56,8 +58,6 @@ jobs:
           prerelease: false
           title: ${{ github.ref }}
           automatic_release_tag: ${{ github.ref }}
-          files: |
-            ./dist
-            CHANGELOG.txt
+          files: CHANGELOG.txt
 
             
