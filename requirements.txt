@@ -1,9 +1,9 @@
-argparse 
-numpy 
-scipy 
-paho_mqtt
-confluent_kafka
-pyinstaller
-protobuf
-grpcio-tools
+argparse==1.4.0
+numpy==1.24.0
+scipy==1.9.3
+paho_mqtt==1.6.1
+confluent_kafka==1.9.2
+pyinstaller==5.7.0
+protobuf==4.21.12
+grpcio-tools==1.51.1
 shapely==1.8.5
