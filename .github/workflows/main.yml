@@ -48,14 +48,13 @@ jobs:
       
       - name: Generate Changelog
         run: echo "# Good things have arrived" >CHANGELOG.txt
+        
       - name: Create Release and Upload Release Asset
-        uses: softprops/action-gh-release@v1
+        uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          body_path: ${{ github.workspace }}-CHANGELOG.txt
-          tag_name: 'v0.0.1'
-          body: TODO New Release.
-          draft: false
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
+          automatic_release_tag: 'v0.0.1'
           files: |
             ./dist
             CHANGELOG.txt
