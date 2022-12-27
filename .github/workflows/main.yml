@@ -3,6 +3,8 @@ name: Python application
 #设置指定分支
 on:
   push:
+    tags:
+      - "v*"
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
@@ -53,11 +55,8 @@ jobs:
           name: ${{ runner.os }} pyinstaller
           path: ./dist
           
-      - uses: CupOfTea696/gh-action-auto-release@v1.0.0
+      - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          title: "Release: $version"
-          tag: "v$semver"
-          draft: false
-          regex: "/^Release: #{semver}$/i"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: ./dist
