@@ -51,6 +51,8 @@ jobs:
           
       - name: download-artifact   
         uses: actions/download-artifact@v3
+        with: 
+          path: ./artifact
  
           
       - name: Create Release and Upload Release Asset
