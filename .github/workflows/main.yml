@@ -40,7 +40,7 @@ jobs:
      
        #pyinstaller打包test.py
       - name: pyinstaller package
-        run: pyinstaller  -F main.py 
+        run: pyinstaller  -F main.py -n ${{ runner.os }}_test
           
        #上传文件
       - name: Upload Artifacts
