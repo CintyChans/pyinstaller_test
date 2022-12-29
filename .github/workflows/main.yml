@@ -51,9 +51,7 @@ jobs:
           
       - name: download-artifact   
         uses: actions/download-artifact@v3
-        with:
-          name: my-artifact
-          path: ./artifact     
+ 
           
       - name: Create Release and Upload Release Asset
         uses: "marvinpinto/action-automatic-releases@latest"
