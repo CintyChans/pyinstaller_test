@@ -48,17 +48,19 @@ jobs:
         with:
           name: ${{ runner.os }} pyinstaller
           path: ./dist
-      
-      - name: Generate Changelog
-        run: echo "# Good things have arrived" >CHANGELOG.txt
-        
+          
+      - name:download-artifact   
+        uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+          path: ./artifact     
+          
       - name: Create Release and Upload Release Asset
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
-          title: 'v0.0.2'
-          automatic_release_tag: ${{ runner.os }}
-          files: ./dist
+          title: 'v0.0.3'
+          files: ./artifact
 
             
