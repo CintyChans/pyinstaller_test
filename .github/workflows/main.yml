@@ -37,26 +37,26 @@ jobs:
      
        #pyinstaller打包test.py
       - name: pyinstaller package
-        if: github.ref_type=='tag'
+#         if: github.ref_type=='tag'
         run: pyinstaller  -F main.py -n ${{ runner.os }}_test
           
        #上传文件
       - name: Upload Artifacts
-        if: github.ref_type=='tag'
+#         if: github.ref_type=='tag'
         uses: actions/upload-artifact@v3
         with:
           name: ${{ runner.os }} pyinstaller
           path: ./dist
           
       - name: download-artifact   
-        if: github.ref_type=='tag'
+#         if: github.ref_type=='tag'
         uses: actions/download-artifact@v3
         with: 
           path: ./artifact
  
        #发布文件  
       - name: Release
-        if: github.ref_type=='tag'
+#         if: github.ref_type=='tag'
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.ref }}
@@ -64,6 +64,6 @@ jobs:
           body: 'hello world'
           draft: false
           prerelease: false
-          files: ./artifact/*
+          files: ./artifact
 
             
