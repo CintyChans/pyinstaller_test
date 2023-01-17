@@ -2,9 +2,10 @@ name: Python application
 
 on:
   push:
-    tags:
-      - "v*"
-    branches: [ "main" ]
+   branches: ["main"]
+   tags:        
+      - v1.0.0
+      - v1.0.0.*
 
 #设置操作系统
 jobs:
@@ -29,10 +30,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt 
           python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./test.proto
-          
-       # 编译test.py
-      - name: python running
-        run: python3 main.py --line 2            
+            
        
        #单元测试
       - name: test
@@ -40,28 +38,32 @@ jobs:
      
        #pyinstaller打包test.py
       - name: pyinstaller package
+        if: startsWith(github.ref, 'refs/tags/')
         run: pyinstaller  -F main.py -n ${{ runner.os }}_test
           
        #上传文件
       - name: Upload Artifacts
+        if: startsWith(github.ref, 'refs/tags/')
         uses: actions/upload-artifact@v3
         with:
           name: ${{ runner.os }} pyinstaller
           path: ./dist
           
       - name: download-artifact   
+        if: startsWith(github.ref, 'refs/tags/')
         uses: actions/download-artifact@v3
         with: 
           path: ./artifact
  
-          
+       #发布文件  
       - name: Create Release and Upload Release Asset
+        if: startsWith(github.ref, 'refs/tags/')
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
-          title: 'v0.0.3'
-          automatic_release_tag: 'v0.0.3'
+          title: ${{ github.ref }}
+          automatic_release_tag: ${{ github.ref }}'
           files: ./artifact
 
             
