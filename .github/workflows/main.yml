@@ -54,12 +54,6 @@ jobs:
         with: 
           path: ./artifact
           
-      - name: ll
-        run: |
-          cd artifact
-          ls 
-          cd ${{ runner.os }}_pyinstaller
-          ls
  
        #发布文件  
       - name: Release
@@ -71,6 +65,6 @@ jobs:
           body: 'hello world'
           draft: false
           prerelease: false
-          files: ./artifact/*
+          files: ./artifact/${{ runner.os }}_pyinstaller/*
 
             
