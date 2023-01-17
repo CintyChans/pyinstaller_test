@@ -4,8 +4,7 @@ on:
   push:
    branches: ["main"]
    tags:        
-      - v1.0.0
-      - v1.0.0.*
+      - v*.*
 
 #设置操作系统
 jobs:
@@ -56,14 +55,15 @@ jobs:
           path: ./artifact
  
        #发布文件  
-      - name: Create Release and Upload Release Asset
+      - name: Release
         if: github.ref_type=='tag'
-        uses: "marvinpinto/action-automatic-releases@latest"
+        uses: softprops/action-gh-release@v1
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          tag_name: ${{ github.ref }}
+          name:  ${{ github.ref }}
+          body: 'hello world'
+          draft: false
           prerelease: false
-          title: ${{github.ref_name}}
-          automatic_release_tag: ${{github.ref_name}}
-          files: ./artifact
+          files: ./artifact/*
 
             
