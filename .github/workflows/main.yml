@@ -73,7 +73,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           name:  ${{ github.ref }}
-          body: ${{ steps.packageJson.outputs.tags-releasenotes.${{ github.ref }} }}
+          body: ${{ steps.packageJson.outputs.tags-releasenotes.github.ref}}
           draft: false
           prerelease: false
           files: ./artifact/${{ runner.os }}_pyinstaller/*
