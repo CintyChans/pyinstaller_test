@@ -55,7 +55,7 @@ jobs:
           path: ./artifact
           
       - name: ll
-        run: ls artifact
+        run: ls artifact/${{ runner.os }} pyinstaller
  
        #发布文件  
       - name: Release
