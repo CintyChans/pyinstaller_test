@@ -1,0 +1,17 @@
+{
+    "releases-index": [
+        {
+            "tag": "v1.0",
+            "releasenotes":"This is v1.0"
+          
+        },
+        {
+            "tag": "v1.0.0",
+            "releasenotes":"This is v1.0.0"
+        },
+        {
+            "tag": "v1.0.0.0",
+            "releasenotes":"This is v1.0.0.0"
+        }
+    ]
+}
