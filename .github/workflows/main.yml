@@ -22,10 +22,11 @@ jobs:
        #安装python
        
       - name: JSON to variables
-        uses: antifree/json-to-variables@v1.0.1
+        id: packageJson
+        uses: RadovanPelka/github-action-json@main
         with:
-          filename: 'releasenotes.json'
-          prefix: releasenotes
+          path: releasenotes.json
+
 
        
       - name: Set up Python 3.9.13
@@ -72,7 +73,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           name:  ${{ github.ref }}
-          body: ${{ env.releasenotes_releases-tag_${github.ref}}}
+          body: ${{ steps.packageJson.outputs.tags-releasenotes.${{ github.ref }} }}
           draft: false
           prerelease: false
           files: ./artifact/${{ runner.os }}_pyinstaller/*
