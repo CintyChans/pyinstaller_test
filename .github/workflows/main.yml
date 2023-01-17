@@ -53,6 +53,9 @@ jobs:
         uses: actions/download-artifact@v3
         with: 
           path: ./artifact
+          
+      - name: ll
+        run: ls artifact
  
        #发布文件  
       - name: Release
