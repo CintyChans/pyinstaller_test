@@ -27,7 +27,7 @@ jobs:
           filename: 'releasenotes.json'
           prefix: releasenotes
       - name: Show output
-        run: echo " ${{ env.releasenotes_releases-tag}}"
+        run: echo " ${{ env.releasenotes_releases-index_*_tag}}"
        
 #       - name: Set up Python 3.9.13
 #         uses: actions/setup-python@v4 
