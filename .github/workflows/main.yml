@@ -64,6 +64,6 @@ jobs:
           body: 'hello world'
           draft: false
           prerelease: false
-          files: ./artifact
+          files: ./artifact/
 
             
