@@ -45,7 +45,7 @@ jobs:
 #         if: github.ref_type=='tag'
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ runner.os }} pyinstaller
+          name: ${{ runner.os }}_pyinstaller
           path: ./dist
           
       - name: download-artifact   
@@ -55,7 +55,11 @@ jobs:
           path: ./artifact
           
       - name: ll
-        run: ls -l artifact
+        run: |
+          cd artifact
+          ls 
+          cd ${{ runner.os }}_pyinstaller
+          ls
  
        #发布文件  
       - name: Release
