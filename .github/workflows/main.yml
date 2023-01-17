@@ -38,12 +38,12 @@ jobs:
      
        #pyinstaller打包test.py
       - name: pyinstaller package
-        if: startsWith(github.ref, 'refs/tags/')
+        if: ${{github.ref_type}} =='tag'
         run: pyinstaller  -F main.py -n ${{ runner.os }}_test
           
        #上传文件
       - name: Upload Artifacts
-        if: startsWith(github.ref, 'refs/tags/')
+        if: ${{github.ref_type}} =='tag'
         uses: actions/upload-artifact@v3
         with:
           name: ${{ runner.os }} pyinstaller
@@ -57,13 +57,13 @@ jobs:
  
        #发布文件  
       - name: Create Release and Upload Release Asset
-        if: startsWith(github.ref, 'refs/tags/')
+        if: ${{github.ref_type}} =='tag'
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
-          title: ${{ github.ref }}
-          automatic_release_tag: ${{ github.ref }}'
+          title: ${{github.ref_name}}
+          automatic_release_tag: ${{github.ref_name}}
           files: ./artifact
 
             
