@@ -68,7 +68,7 @@ jobs:
  
         #发布文件  
       - name: Release
-        if: github.ref_type=='tag'
+    #    if: github.ref_type=='tag'
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.ref }}
