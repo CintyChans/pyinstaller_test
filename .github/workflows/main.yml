@@ -12,22 +12,19 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest,ubuntu-latest,macos-latest]
-        json: ${{ steps.set-matrix.outputs.matrix }}
       
     runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v3
+       #安装python
+       
+      - name: Get values from the package.json
+        id: releasenotes
+        uses: RadovanPelka/github-action-json@main
+        with:
+          path: "releasenotes.json" 
 
-      - name: test json
-        id: json
-        uses: ActionsTools/read-json-action@main
-        with: 
-          file_path: 'releasenotes.json'
-      
-      - name: test value
-        if: contains(github.ref, steps.json.releasenotes.*.name)
-        run: echo '${{  steps.json.releasenotes.*.notes }}'
 
       # - name: Set up Python 3.9.13
       #   uses: actions/setup-python@v4 
@@ -51,7 +48,15 @@ jobs:
       #   if: github.ref_type=='tag'
       #   run: pyinstaller  -F main.py -n ${{ runner.os }}_test
 
-
+      - name: test json
+        id: json
+        uses: ./
+        with: 
+          file_path: 'package.json'
+      
+      - name: test value
+        if: contains(github.ref, steps.packageJson.releasenotes.tags)
+        run: echo ${{steps.json.outputs.releasenotes}}
 
       #  #上传文件
       # - name: Upload Artifacts
