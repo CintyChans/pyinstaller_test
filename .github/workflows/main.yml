@@ -52,8 +52,7 @@ jobs:
        # if: contains(github.ref_name, steps.json.outputs.tags)
         run: |
           echo '${{ steps.json.outputs.tags}}'
-          echo '${{format('steps.json.outputs.tags_releasenote.{0}',github.ref_name)}}'
-          echo '${{ steps.json.outputs.tags_releasenotes.v*}}'
+          echo ${{ steps.json.outputs.tags_releasenotes.${{github.ref_name}}}}
 
       #  #上传文件
       # - name: Upload Artifacts
