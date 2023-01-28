@@ -4,9 +4,7 @@ on:
   push:
    branches: ["main"]
    tags:        
-      - v*.*
-      - v*.*.*
-      - v*.*.*.*
+      - v(\d*).*
 
 #设置操作系统
 jobs:
@@ -44,7 +42,7 @@ jobs:
        
         #单元测试
       - name: test
-        run: python -m unittest  test_main.py 
+        run: pytest  test_main.py 
      
        #pyinstaller打包test.py
       - name: pyinstaller package

@@ -7,3 +7,4 @@ pyinstaller==5.7.0
 protobuf==4.21.12
 grpcio-tools==1.51.1
 shapely==1.8.5
+pytest==7.2.1

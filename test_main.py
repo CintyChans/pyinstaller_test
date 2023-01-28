@@ -1,22 +1,20 @@
-import unittest
+import pytest
 import main
 import numpy as np
-class TestDemo(unittest.TestCase):
-     def setUp(self):
-          print('setUp')
-     def tearDown(self):
-          print('tearDown')
+class TestDemo():
 
      def test_demo_1(self):
+          print('----测试用例执行-----------')
           person=main.f2()
-          self.assertEqual(person.id,1)
+          assert person.id==1
       
      def test_demo_2(self):
+          print('----测试用例执行-----------')
           x=main.f5()
-          self.assertTrue(1 in x)
+          assert 1 in x
   
      def test_demo_3(self):
-          self.assertTrue(main.f6()!=3.14)
+          print('----测试用例执行-----------')
+          assert main.f6()!=3.14
 
-if __name__ == '__main__':
-     unittest.main(verbosity=2)
+
