@@ -19,12 +19,6 @@ jobs:
       - uses: actions/checkout@v3
        #安装python
        
-      - name: Get values from the package.json
-        id: releasenotes
-        uses: RadovanPelka/github-action-json@main
-        with:
-          path: "releasenotes.json" 
-
 
       # - name: Set up Python 3.9.13
       #   uses: actions/setup-python@v4 
