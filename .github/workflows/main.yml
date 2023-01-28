@@ -11,7 +11,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [windows-latest,ubuntu-latest,macos-latest]
+        os: [windows-latest]
       
     runs-on: ${{ matrix.os }}
 
@@ -51,6 +51,7 @@ jobs:
       - name: test value
         if: contains(github.ref, steps.packageJson.releasenotes.tags)
         run: echo ${{steps.json.outputs.releasenotes.main}}
+        shell: cmd
 
       #  #上传文件
       # - name: Upload Artifacts
