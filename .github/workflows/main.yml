@@ -21,7 +21,7 @@ jobs:
        
       - name: Get values from the package.json
         id: releasenotes
-        uses: RadovanPelka/github-action-json@main
+        uses: ActionsTools/read-json-action@main
         with:
           path: "releasenotes.json" 
 
@@ -48,12 +48,7 @@ jobs:
       #   if: github.ref_type=='tag'
       #   run: pyinstaller  -F main.py -n ${{ runner.os }}_test
 
-      - name: test json
-        id: json
-        uses: ./
-        with: 
-          file_path: 'package.json'
-      
+    
       - name: test value
         if: contains(github.ref, steps.packageJson.releasenotes.tags)
         run: echo ${{steps.json.outputs.releasenotes}}
