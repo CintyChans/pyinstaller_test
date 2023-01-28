@@ -54,6 +54,7 @@ jobs:
         run: |
           echo '${{ steps.json.outputs.tags_releasenotes.main}}'
           echo 'join(steps.json.outputs.tags_releasenotes,github.ref)'
+          echo '${{ github.ref }}'
 
       #  #上传文件
       # - name: Upload Artifacts
