@@ -53,6 +53,8 @@ jobs:
         uses: ./
         with: 
           file_path: 'package.json'
+      
+      - name: test value
         if: contains(github.ref, steps.packageJson.releasenotes.tags)
         run: echo ${{steps.json.outputs.releasenotes}}
 
