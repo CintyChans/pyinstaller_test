@@ -1,3 +1,4 @@
+
 name: Python application
 
 on:
@@ -11,7 +12,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [windows-latest,ubuntu-latest,macos-latest]
+        os: [ubuntu-latest,macos-latest]
       
     runs-on: ${{ matrix.os }}
 
@@ -19,12 +20,6 @@ jobs:
       - uses: actions/checkout@v3
        #安装python
        
-      - name: Get values from the package.json
-        id: releasenotes
-        uses: ActionsTools/read-json-action@main
-        with:
-          path: "releasenotes.json" 
-
 
       # - name: Set up Python 3.9.13
       #   uses: actions/setup-python@v4 
@@ -48,10 +43,15 @@ jobs:
       #   if: github.ref_type=='tag'
       #   run: pyinstaller  -F main.py -n ${{ runner.os }}_test
 
-    
+      - name: test json
+        id: json
+        uses: ActionsTools/read-json-action@main
+        with: 
+          file_path: 'releasenotes.json'
+      
       - name: test value
-   
-        run: echo ${{steps.releasenotes.outputs.releasenotes.notes}}
+ #       if: contains(github.ref, steps.json.outputs.releasenotes)
+        run: echo ${{steps.json.outputs.releasenotes}}
 
       #  #上传文件
       # - name: Upload Artifacts
