@@ -53,7 +53,7 @@ jobs:
        # if: contains(github.ref_name, steps.json.outputs.tags)
         run: |
           echo '${{ steps.json.outputs.tags}}'
-          echo '${{join(steps.json.outputs.tags_releasenotes,github.ref_name,'.')}}'
+          echo '${{join([steps.json.outputs.tags_releasenotes,github.ref_name],'.')}}'
           echo '${{ steps.json.outputs.tags_releasenotes}}'
 
       #  #上传文件
