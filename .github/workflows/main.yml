@@ -53,7 +53,7 @@ jobs:
         if: contains(github.ref, steps.packageJson.tags)
         run: |
           echo '${{ steps.json.outputs.tags_releasenotes.main}}'
-          echo '${{ join(steps.json.outputs.tags_releasenotes,github.ref) }}'
+          echo 'join(steps.json.outputs.tags_releasenotes,github.ref)'
 
       #  #上传文件
       # - name: Upload Artifacts
