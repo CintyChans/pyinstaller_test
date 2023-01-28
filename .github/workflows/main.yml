@@ -50,7 +50,8 @@ jobs:
 
       - name: test json
         id: json
-        if: github.ref in steps.packageJson.releasenotes.tags
+
+        if: contains(github.ref, steps.packageJson.releasenotes.tags)
         run: echo ${{steps.json.outputs.releasenotes}}
 
       #  #上传文件
