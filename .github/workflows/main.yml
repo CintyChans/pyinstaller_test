@@ -50,7 +50,7 @@ jobs:
           file_path: 'releasenotes.json'
           
       - name: ${{ github.ref_name }}
-        if: contains(github.ref_name, steps.json.outputs.tags)
+       # if: contains(github.ref_name, steps.json.outputs.tags)
         run: |
           echo '${{ steps.json.outputs.tags_releasenotes.main}}'
           echo 'join(steps.json.outputs.tags_releasenotes,github.ref_name)'
