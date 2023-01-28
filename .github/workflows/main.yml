@@ -50,9 +50,8 @@ jobs:
           
       - name: ${{steps.json.outputs.tags_releasenotes}}.${{github.ref_name}}
        # if: contains(github.ref_name, steps.json.outputs.tags)
-        run: |
-          $json = (Get-Content "releasenotes.json" -Raw) | ConvertFrom-Json
-          foreach($v in $json.tags_releasenotes) {  if($v.name='main'){echo $v.notes} }
+        shell: python 
+        run: "import json; obj=json.load('releasenotes.json'); print(obj['tags_releasenotes'].encode('utf-8'))"
 
       #  #上传文件
       # - name: Upload Artifacts
