@@ -48,7 +48,7 @@ jobs:
         with: 
           file_path: 'releasenotes.json'
           
-      - name: ${{steps.json.outputs.tags_releasenotes}}.${{GITHUB_REF_NAME}}
+      - name: ${{steps.json.outputs.tags_releasenotes}}.${{github.ref_name}}
        # if: contains(github.ref_name, steps.json.outputs.tags)
         run: |
           echo '${{ steps.json.outputs.tags}}'
