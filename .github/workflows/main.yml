@@ -52,7 +52,7 @@ jobs:
        # if: contains(github.ref_name, steps.json.outputs.tags)
         run: |
           echo '${{ steps.json.outputs.tags}}'
-          echo '${{ fromJSON(steps.json.outputs.tags_releasenotes)}}.${{github.ref_name}}'
+          echo '${{ toJSON(steps.json.outputs.tags_releasenotes)}}.${{github.ref_name}}'
 
       #  #上传文件
       # - name: Upload Artifacts
