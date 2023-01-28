@@ -45,7 +45,7 @@ jobs:
 
       - name: test json
         id: json
-        uses: ./
+        uses: ActionsTools/read-json-action@main
         with: 
           file_path: 'releasenotes.json'
       
