@@ -20,10 +20,10 @@ jobs:
       - uses: actions/checkout@v3
        #安装python
       - name: Build
-      - id: set-matrix
+        id: set-matrix
         run: |
           JSON=$(cat releasenotes.json)
-          echo "matrix=$JSON" >> $GITHUB_OUTPUT
+          echo "matrix=$JSON" 
 
       # - name: Set up Python 3.9.13
       #   uses: actions/setup-python@v4 
