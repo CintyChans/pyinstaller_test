@@ -51,7 +51,7 @@ jobs:
       
       - name: test value
         if: contains(github.ref, steps.packageJson.releasenotes.tags)
-        run: echo '${{ hashFiles(releasenotes.json) }}'
+        run: echo '${{ hashFiles('releasenotes.json') }}'
         
       #  #上传文件
       # - name: Upload Artifacts
