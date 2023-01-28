@@ -52,7 +52,7 @@ jobs:
        # if: contains(github.ref_name, steps.json.outputs.tags)
         run: |
           echo '${{ steps.json.outputs.tags}}'
-          echo '${{ steps.json.outputs.tags_releasenotes}}.${{github.ref_name}}'
+          echo '${{ fromJSON(steps.json.outputs.tags_releasenotes)}}.${{github.ref_name}}'
 
       #  #上传文件
       # - name: Upload Artifacts
@@ -76,7 +76,7 @@ jobs:
       #   with:
       #     tag_name: ${{github.ref_name}}
       #     name: ${{github.ref_name}}
-      #     body: ${{ steps.packageJson.outputs.tags-releasenotes.github.ref_name}}
+      #     body: ${{ tojsteps.packageJson.outputs.tags-releasenotes.github.ref_name}}
       #     draft: false
       #     prerelease: false
       #     files: ./artifact/${{ runner.os }}_pyinstaller/*
