@@ -11,14 +11,19 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-latest,macos-latest]
+        os: [windows-latest,ubuntu-latest,macos-latest]
+        json: ${{ steps.set-matrix.outputs.matrix }}
       
     runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v3
        #安装python
-       
+
+    - id: set-matrix
+      run: |
+        JSON=$(cat releasenotes.json)
+        echo "::set-output name=matrix::${JSON}"
 
       # - name: Set up Python 3.9.13
       #   uses: actions/setup-python@v4 
@@ -42,15 +47,15 @@ jobs:
       #   if: github.ref_type=='tag'
       #   run: pyinstaller  -F main.py -n ${{ runner.os }}_test
 
-      - name: test json
-        id: json
-        uses: ActionsTools/read-json-action@main
-        with: 
-          file_path: 'releasenotes.json'
+      # - name: test json
+      #   id: json
+      #   uses: ./
+      #   with: 
+      #     file_path: 'releasenotes.json'
       
-      - name: test value
-        if: contains(github.ref, steps.packageJson.releasenotes.tags)
-        run: echo '${{ toJSON(steps.json.outputs.releasenotes) }}'
+      # - name: test value
+      #   if: contains(github.ref, steps.packageJson.releasenotes.tags)
+      #   run: echo '${{ toJSON(steps.json.outputs.releasenotes) }}'
 
       #  #上传文件
       # - name: Upload Artifacts
