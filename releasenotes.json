@@ -1,9 +1,10 @@
 {    
-    "tags": ["main","v1.0.0","v1.0.0.0"],
     "releasenotes":
         {
-             "main":"This is v1.0",
-             "v1.0.0":"This is v1.0.0",
-             "v1.0.0.0":"This is v1.0.0.0"
-        }
+             "name":"main",
+              "notes":"This is main"},
+        {
+              "name":"v1.0",
+              "notes":"This is v1.0"}
+
 }
