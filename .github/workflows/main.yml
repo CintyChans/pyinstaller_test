@@ -52,7 +52,8 @@ jobs:
       - name: ${{steps.json.outputs.tags_releasenotes}}.${{github.ref_name}}
        # if: contains(github.ref_name, steps.json.outputs.tags)
         shell: python 
-        run: "import json;import os;f=open('releasenotes.json');obj=json.load(f); print(obj['tags_releasenotes']);f.close();os.system(' echo "abbr=obj['tags_releasenotes']" >> $GITHUB_ENV')"
+        run: |
+          "import json;import os;f=open('releasenotes.json');obj=json.load(f); print(obj['tags_releasenotes']);f.close();os.system(' echo "abbr=obj['tags_releasenotes']" >> $GITHUB_ENV')"
 
       #  #上传文件
       # - name: Upload Artifacts
