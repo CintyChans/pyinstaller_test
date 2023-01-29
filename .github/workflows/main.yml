@@ -31,7 +31,7 @@ jobs:
       - name: pytest
         run: pytest  test_main.py 
      
-       pyinstaller打包test.py
+      
       - name: pyinstaller package
         if: github.ref_type=='tag'
         run: pyinstaller  -F main.py -n ${{ runner.os }}_test
