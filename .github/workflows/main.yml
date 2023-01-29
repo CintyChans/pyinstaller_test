@@ -58,7 +58,7 @@ jobs:
 
       - name: ${{steps.json.outputs.tags_releasenotes}}.${{github.ref_name}}
        # if: contains(github.ref_name, steps.json.outputs.tags)
-        run: echo'${{outputs.abbr}}'
+        run: echo "${{ env.abbr }}"
 
       #  #上传文件
       # - name: Upload Artifacts
