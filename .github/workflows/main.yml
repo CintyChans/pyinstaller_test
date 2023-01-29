@@ -52,7 +52,7 @@ jobs:
         id: abbr
         shell: python 
         run: |
-          "import json;import os;f=open('releasenotes.json');obj=json.load(f);abbr='';print('1');f.close();"
+          import json;import os;f=open('releasenotes.json');obj=json.load(f);abbr='';x=[i['notes'] for i in obj['tags_releasenotes'] if i['name']=='main'];print(x[0]);
 
       - name: ${{steps.json.outputs.tags_releasenotes}}.${{github.ref_name}}
        # if: contains(github.ref_name, steps.json.outputs.tags)
