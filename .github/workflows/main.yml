@@ -14,8 +14,8 @@ jobs:
         os: [windows-latest,ubuntu-latest,macos-latest]
       
     runs-on: ${{ matrix.os }}
-     outputs:
-        abbr: ${{ steps.abbr.outputs.abbr }}
+    outputs:
+      abbr: ${{ steps.abbr.outputs.abbr }}
     steps:
       - uses: actions/checkout@v3
        #安装python
