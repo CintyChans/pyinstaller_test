@@ -14,8 +14,6 @@ jobs:
         os: [windows-latest,ubuntu-latest,macos-latest]
       
     runs-on: ${{ matrix.os }}
-    outputs:
-      abbr: ${{ steps.abbr.outputs.abbr }}
     steps:
       - uses: actions/checkout@v3
        #安装python
@@ -49,12 +47,12 @@ jobs:
         with: 
           file_path: 'releasenotes.json'
           
-      - name: ${{steps.json.outputs.tags_releasenotes}}.${{github.ref_name}}
+      - name: abbr
        # if: contains(github.ref_name, steps.json.outputs.tags)
         id: abbr
         shell: python 
         run: |
-          "import json;import os;f=open('releasenotes.json');obj=json.load(f);abbr='';for x in obj['tags_releasenotes']:if x['name']=='main':abbr=x['notes'];f.close();os.system(' echo "abbr" >> $GITHUB_ENV')"
+          "import json;import os;f=open('releasenotes.json');obj=json.load(f);abbr='';for x in obj['tags_releasenotes']:if x['name']=='main':abbr=x['notes'];f.close();"
 
       - name: ${{steps.json.outputs.tags_releasenotes}}.${{github.ref_name}}
        # if: contains(github.ref_name, steps.json.outputs.tags)
