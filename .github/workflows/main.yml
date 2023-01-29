@@ -53,7 +53,7 @@ jobs:
         shell: python 
         run: |
           import json;import os;f=open('releasenotes.json');obj=json.load(f);abbr='';x=[i['notes'] for i in obj['tags_releasenotes'] if i['name']=='main'];print(x[0]);
-          os.command('echo "abbr" >> $GITHUB_ENV')
+          os.system('echo "abbr" >> $GITHUB_ENV')
           
 
       - name: ${{steps.json.outputs.tags_releasenotes}}.${{github.ref_name}}
