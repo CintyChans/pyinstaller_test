@@ -47,18 +47,17 @@ jobs:
         with: 
           file_path: 'releasenotes.json'
           
-      - name: abbr
+      - name: note
        # if: contains(github.ref_name, steps.json.outputs.tags)
-        id: abbr
         shell: python 
         run: |
-          import json;import os;f=open('releasenotes.json');obj=json.load(f);abbr='';x=[i['notes'] for i in obj['tags_releasenotes'] if i['name']=='main'];abbr=x[0];f.close()
-          os.system("echo \"abbr={}\" >> $GITHUB_ENV".format(abbr))
+          import json;import os;f=open('releasenotes.json');obj=json.load(f);abbr='';x=[i['notes'] for i in obj['tags_releasenotes'] if i['name']==${{github.ref_name}}];note=x[0];f.close()
+          os.system("echo \"note={}\" >> $GITHUB_ENV".format(note))
           
 
-      - name: ${{steps.json.outputs.tags_releasenotes}}.${{github.ref_name}}
+      - name: ${{ env.note }}
        # if: contains(github.ref_name, steps.json.outputs.tags)
-        run: echo "${{ env.abbr }}"
+        run: echo "${{ env.note }}"
 
       #  #上传文件
       # - name: Upload Artifacts
