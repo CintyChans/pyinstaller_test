@@ -37,31 +37,11 @@ jobs:
         run: pyinstaller  -F main.py -n ${{ runner.os }}_test
           
       - name: note
-<<<<<<< HEAD
         if: github.ref_type=='tag'
-=======
-       # if: contains(github.ref_name, steps.json.outputs.tags)
->>>>>>> e7d3821ce061e363c43f815a26dc80874ff16fc9
         shell: python 
         run: |
           import json;import os;f=open('releasenotes.json');obj=json.load(f);abbr='';x=[i['notes'] for i in obj['tags_releasenotes'] if i['name']=='${{github.ref_name}}'];note=x[0];f.close()
           os.system("echo \"note={}\" >> $GITHUB_ENV".format(note))
-<<<<<<< HEAD
-=======
-          
-
-      - name: ${{ env.note }}
-       # if: contains(github.ref_name, steps.json.outputs.tags)
-        run: echo "${{ env.note }}"
-
-      #  #上传文件
-      # - name: Upload Artifacts
-      #   if: github.ref_type=='tag'
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #      name: ${{ runner.os }}_pyinstaller
-      #      path: ./dist
->>>>>>> e7d3821ce061e363c43f815a26dc80874ff16fc9
           
 
        
