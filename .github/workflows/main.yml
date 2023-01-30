@@ -14,7 +14,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [windows-latest,macos-latest,ubuntu-latest]
+        os: [ubuntu-latest]
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -39,12 +39,13 @@ jobs:
 #         if: github.ref_type=='tag'
 #         run: pyinstaller  -F main.py -n ${{ runner.os }}_test
           
-#       - name: note
-#         if: github.ref_type=='tag'
-#         shell: python 
-#         run: |
-#           import json;import os;f=open('releasenotes.json');obj=json.load(f);abbr='';x=[i['notes'] for i in obj['tags_releasenotes'] if i['name']=='${{github.ref_name}}'];note=['\\n'.join(x[0]) if x else ''][0];f.close()
-#           os.system("echo note={} >> $GITHUB_ENV".format(note))
+      - name: note
+        if: github.ref_type=='tag'
+        shell: python 
+        run: |
+          import json;import os;f=open('releasenotes.json');obj=json.load(f);abbr='';x=[i['notes'] for i in obj['tags_releasenotes'] if i['name']=='${{github.ref_name}}'];note=['\\n'.join(x[0]) if x else ''][0];f.close()
+          os.system("$note={} ".format(note))
+          os.system("echo \"$note\" >> $GITHUB_ENV".format(note))
           
 
        
@@ -68,7 +69,7 @@ jobs:
         with:
           tag_name: ${{github.ref_name}}
           name: ${{github.ref_name}}
-          body: cat releasenotes.json
+          body: ${{env.note}}
           draft: false
           prerelease: false
         #  files: ./artifact/${{ runner.os }}_pyinstaller/*
