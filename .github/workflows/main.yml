@@ -48,10 +48,10 @@ jobs:
       - name: test note
         run: |
            tmp=$(cat tmp.txt)
-           echo "NOTE<<EOF" >> $GITHUB_ENV
+           echo 'NOTE<<EOF' >> $GITHUB_ENV
            echo $tmp >> $GITHUB_ENV
-           echo "EOF" >> $GITHUB_ENV
-           echo "${{ env.NOTE }}"
+           echo 'EOF' >> $GITHUB_ENV
+
        
       - name: Upload Artifacts
         if: github.ref_type=='tag' 
@@ -68,12 +68,12 @@ jobs:
           
  
       - name: Release
-        if: github.ref_type=='tag'
+        
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{github.ref_name}}
           name: ${{github.ref_name}}
-          body: ${{env.note}}
+          body: ${{env.NOTE}}
           draft: false
           prerelease: false
           files: ./artifact/${{ runner.os }}_pyinstaller/*
