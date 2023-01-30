@@ -51,7 +51,7 @@ jobs:
            echo "NOTE<<EOF" >> $GITHUB_ENV
            echo $tmp >> $GITHUB_ENV
            echo "EOF" >> $GITHUB_ENV
-           echo ${{ env.NOTE }}
+           echo "${{ env.NOTE }}"
        
       - name: Upload Artifacts
         if: github.ref_type=='tag' 
