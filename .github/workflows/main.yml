@@ -71,4 +71,4 @@ jobs:
           body: "${{env.note}}"
           draft: false
           prerelease: false
-        #  files: ./artifact/${{ runner.os }}_pyinstaller/*
+        #   files: ./artifact/${{ runner.os }}_pyinstaller/*
