@@ -20,31 +20,31 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up Python 3.9.13
-        uses: actions/setup-python@v4 
-        with:
-          python-version: '3.9.13'
+#       - name: Set up Python 3.9.13
+#         uses: actions/setup-python@v4 
+#         with:
+#           python-version: '3.9.13'
         
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt 
-          python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./test.proto
+#       - name: Install dependencies
+#         run: |
+#           python -m pip install --upgrade pip
+#           pip install -r requirements.txt 
+#           python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./test.proto
             
-      - name: pytest
-        run: pytest  test_main.py 
+#       - name: pytest
+#         run: pytest  test_main.py 
      
       
-      - name: pyinstaller package
-        if: github.ref_type=='tag'
-        run: pyinstaller  -F main.py -n ${{ runner.os }}_test
+#       - name: pyinstaller package
+#         if: github.ref_type=='tag'
+#         run: pyinstaller  -F main.py -n ${{ runner.os }}_test
           
-      - name: note
-        if: github.ref_type=='tag'
-        shell: python 
-        run: |
-          import json;import os;f=open('releasenotes.json');obj=json.load(f);abbr='';x=[i['notes'] for i in obj['tags_releasenotes'] if i['name']=='${{github.ref_name}}'];note=['\\n'.join(x[0]) if x else ''][0];f.close()
-          os.system("echo \"note={}\" >> $GITHUB_ENV".format(note))
+#       - name: note
+#         if: github.ref_type=='tag'
+#         shell: python 
+#         run: |
+#           import json;import os;f=open('releasenotes.json');obj=json.load(f);abbr='';x=[i['notes'] for i in obj['tags_releasenotes'] if i['name']=='${{github.ref_name}}'];note=['\\n'.join(x[0]) if x else ''][0];f.close()
+#           os.system("echo note={} >> $GITHUB_ENV".format(note))
           
 
        
@@ -63,12 +63,12 @@ jobs:
           
  
       - name: Release
-        if: github.ref_type=='tag'
+      # if: github.ref_type=='tag'
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{github.ref_name}}
           name: ${{github.ref_name}}
-          body: ${{ env.note}}
+          body: cat releasenotes.json
           draft: false
           prerelease: false
-          files: ./artifact/${{ runner.os }}_pyinstaller/*
+        #  files: ./artifact/${{ runner.os }}_pyinstaller/*
