@@ -68,13 +68,13 @@ jobs:
           path: ./artifact
           
       - name: Create Release
-        uses: nickatnight/releases-action@v4
+        uses: softprops/action-gh-release@v1
         with:
-          branch: ${{github.ref_name}}
+          tag_name: ${{github.ref_name}}
           name: ${{github.ref_name}}
-          message: "${{tmp}}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          body: |
+            "${{env.NOTE}}"
+
      
 #       - name: Release
         
