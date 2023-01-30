@@ -44,7 +44,7 @@ jobs:
         shell: python 
         run: |
           import json;import os;f=open('releasenotes.json');obj=json.load(f);abbr='';x=[i['notes'] for i in obj['tags_releasenotes'] if i['name']=='v1.0'];note=['\\n'.join(x[0]) if x else ''][0];f.close()
-          os.system("echo $note={} >> $GITHUB_ENV".format(note))
+          os.system("echo note={} >> $GITHUB_ENV".format(note))
           
 
        
