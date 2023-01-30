@@ -40,7 +40,7 @@ jobs:
 #         run: pyinstaller  -F main.py -n ${{ runner.os }}_test
           
       - name: note
-        if: github.ref_type=='tag'
+       # if: github.ref_type=='tag'
         shell: python 
         run: |
           import json;import os;f=open('releasenotes.json');obj=json.load(f);abbr='';x=[i['notes'] for i in obj['tags_releasenotes'] if i['name']=='${{github.ref_name}}'];note=['\\n'.join(x[0]) if x else ''][0];f.close()
