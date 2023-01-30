@@ -49,7 +49,7 @@ jobs:
       - name: test note
         run: |
           cat tmp.txt >> $MULTI_LINES_TEXT
-          echo "$MULTI_LINES_TEXT"
+          echo $MULTI_LINES_TEXT
 
        
       - name: Upload Artifacts
