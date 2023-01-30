@@ -48,11 +48,8 @@ jobs:
      
       - name: test note
         run: |
-          cat tmp.txt
-          echo 'FILE_TEXT<<EOF' >> $GITHUB_ENV
-          cat ./tmp.txt >> $GITHUB_ENV
-          echo 'EOF' >> $GITHUB_ENV
-          echo "${{env.FILE_TEXT}} "
+          cat tmp.txt >> MULTI_LINES_TEXT
+          echo "MULTI_LINES_TEXT"
 
        
       - name: Upload Artifacts
