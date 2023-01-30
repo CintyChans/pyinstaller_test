@@ -73,7 +73,7 @@ jobs:
           tag_name: ${{github.ref_name}}
           name: ${{github.ref_name}}
           body: |
-            ${{env.JSON_RESPONSE}}
+            "${{env.JSON_RESPONSE}}"
 
      
 #       - name: Release
