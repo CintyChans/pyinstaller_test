@@ -69,7 +69,6 @@ jobs:
           
       - name: Create Release
         uses: nickatnight/releases-action@v4
-        if: startsWith(github.ref, 'refs/tags/')
         with:
           branch: ${{github.ref_name}}
           name: ${{github.ref_name}}
