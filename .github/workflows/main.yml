@@ -68,7 +68,7 @@ jobs:
         with:
           tag_name: ${{github.ref_name}}
           name: ${{github.ref_name}}
-          body: "${{env.note}}"
+          body: ${{env.note}}
           draft: false
           prerelease: false
         #   files: ./artifact/${{ runner.os }}_pyinstaller/*
