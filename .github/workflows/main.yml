@@ -45,7 +45,9 @@ jobs:
         run: |
           import json;import os;f=open('releasenotes.json');obj=json.load(f);abbr='';x=[i['notes'] for i in obj['tags_releasenotes'] if i['name']=='v1.0'];note=['\n'.join(x[0]) if x else ''][0];f.close()
           os.system("echo note=$({})>> $GITHUB_ENV".format(note))
-          
+     
+      - name: test note
+        run: echo "${{env.note}}"
 
        
       - name: Upload Artifacts
@@ -63,7 +65,7 @@ jobs:
           
  
       - name: Release
-      # if: github.ref_type=='tag'
+        if: github.ref_type=='tag'
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{github.ref_name}}
@@ -71,4 +73,4 @@ jobs:
           body: ${{env.note}}
           draft: false
           prerelease: false
-        #   files: ./artifact/${{ runner.os }}_pyinstaller/*
+          files: ./artifact/${{ runner.os }}_pyinstaller/*
