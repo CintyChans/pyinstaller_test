@@ -44,7 +44,7 @@ jobs:
         if: github.ref_type=='tag'
         shell: python 
         run: |
-          import json;import os;f=open('releasenotes.json',"r");obj=json.load(f);abbr='';note=[i['notes'] for i in obj['tags_releasenotes'] if i['name']=='${{github.ref_name}}'];f.close();note=[note[0] if note else ''][0];
+          import json;import os;f=open('releasenotes.json',"r");obj=json.load(f);note=[i['notes'] for i in obj['tags_releasenotes'] if i['name']=='${{github.ref_name}}'];f.close();note=[note[0] if note else ''][0];
           os.system("echo 'NOTE<<EOF' >> $GITHUB_ENV")
           tmp=[os.system("echo '{}' >> $GITHUB_ENV".format(n)) for n in note]
           os.system("echo 'EOF' >> $GITHUB_ENV")
