@@ -47,6 +47,7 @@ jobs:
           
       - name: test note
         run: |
+           cat tmp.txt
            VER=$(cat tmp.txt)
            echo $VER
 
