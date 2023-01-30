@@ -44,12 +44,12 @@ jobs:
         shell: python 
         run: |
           import json;import os;f=open('releasenotes.json',"r");ft=open('tmp.txt',"w");obj=json.load(f);abbr='';x=[i['notes'] for i in obj['tags_releasenotes'] if i['name']=='v1.0'];note=['\n'.join(x[0]) if x else ''][0];ft.write(note);ft.close();f.close()
-          
+          os.system("echo \"note=$({})\" >> $GITHUB_ENV".format(note))
      
       - name: test note
         run: |
-          cat tmp.txt >> $MULTI_LINES_TEXT
-          echo $MULTI_LINES_TEXT
+          echo $note
+          echo ${{env.note}}
 
        
       - name: Upload Artifacts
