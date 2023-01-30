@@ -49,7 +49,7 @@ jobs:
         run: |
            cat tmp.txt
            VER=$(cat tmp.txt)
-           echo $VER
+           echo "$VER"
 
        
       - name: Upload Artifacts
