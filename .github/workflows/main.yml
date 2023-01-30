@@ -52,6 +52,7 @@ jobs:
            echo 'NOTE<<EOF' >> $GITHUB_ENV
            echo $tmp >> $GITHUB_ENV
            echo 'EOF' >> $GITHUB_ENV
+           ${{env.NOTE}}
 
        
       - name: Upload Artifacts
