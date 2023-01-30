@@ -44,14 +44,11 @@ jobs:
        # if: github.ref_type=='tag'
         shell: python 
         run: |
-          import json;import os;f=open('releasenotes.json',"r");ft=open('tmp.txt',"w");obj=json.load(f);abbr='';x=[i['notes'] for i in obj['tags_releasenotes'] if i['name']=='v1.0'];note=['\n'.join(x[0]) if x else ''][0];ft.write(note);ft.close();f.close()
-          
-      - name: test note
-        run: |
-          echo 'JSON_RESPONSE<<EOF' >> $GITHUB_ENV
-          echo "1" >> $GITHUB_ENV
-          echo "2" >> $GITHUB_ENV
-          echo 'EOF' >> $GITHUB_ENV
+          import json;import os;f=open('releasenotes.json',"r");obj=json.load(f);abbr='';note=[i['notes'] for i in obj['tags_releasenotes'] if i['name']=='v1.0'][0];f.close()
+          os.system("echo 'NOTE<<EOF' >> $GITHUB_ENV")
+          tmp=[os.system("echo '{}' >> $GITHUB_ENV".format(n)) for n in note]
+          os.system("echo 'EOF' >> $GITHUB_ENV")
+
           
  
        
@@ -74,7 +71,7 @@ jobs:
           tag_name: ${{github.ref_name}}
           name: ${{github.ref_name}}
           body: |
-             ${{env.JSON_RESPONSE}}
+             ${{env.NOTE}}
 
      
 #       - name: Release
