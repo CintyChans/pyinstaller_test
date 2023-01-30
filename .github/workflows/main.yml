@@ -47,13 +47,14 @@ jobs:
           
       - name: test note
         run: |
-           VER=$(cat tmp.txt)
-           echo "VERSION=$VER" >> $GITHUB_ENV
-           echo "${{ env.VERSION  }}"
-
+           tmp=$(cat tmp.txt)
+           echo "NOTE<<EOF" >> $GITHUB_ENV
+           echo $tmp >> $GITHUB_ENV
+           echo "EOF" >> $GITHUB_ENV
+           echo ${{ env.NOTE }}
        
       - name: Upload Artifacts
-        if: github.ref_type=='tag'
+        if: github.ref_type=='tag' 
         uses: actions/upload-artifact@v3
         with:
            name: ${{ runner.os }}_pyinstaller
