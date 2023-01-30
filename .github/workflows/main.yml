@@ -72,7 +72,7 @@ jobs:
         with:
           branch: ${{github.ref_name}}
           name: ${{github.ref_name}}
-          message: "${{env.NOTE}}"
+          message: "$tmp"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
      
