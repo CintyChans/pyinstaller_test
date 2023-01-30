@@ -47,9 +47,9 @@ jobs:
           
       - name: test note
         run: |
-           cat tmp.txt
            VER=$(cat tmp.txt)
-           echo "$VER"
+           echo "VERSION=$VER" >> $GITHUB_ENV
+           echo "${{ env.VERSION  }}"
 
        
       - name: Upload Artifacts
