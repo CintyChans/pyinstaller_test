@@ -48,12 +48,11 @@ jobs:
           
       - name: test note
         run: |
-           tmp=$(cat tmp.txt)
-           echo 'NOTE<<EOF' >> $GITHUB_ENV
-           echo $tmp >> $GITHUB_ENV
-           echo 'EOF' >> $GITHUB_ENV
-           ${{env.NOTE}}
-
+          echo 'JSON_RESPONSE<<EOF' >> $GITHUB_ENV
+          curl https://example.com >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+          
+ 
        
       - name: Upload Artifacts
         if: github.ref_type=='tag' 
@@ -74,7 +73,7 @@ jobs:
           tag_name: ${{github.ref_name}}
           name: ${{github.ref_name}}
           body: |
-            ${{env.NOTE}}
+            ${{env.JSON_RESPONSE}}
 
      
 #       - name: Release
