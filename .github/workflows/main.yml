@@ -49,7 +49,7 @@ jobs:
       - name: test note
         run: |
           echo 'JSON_RESPONSE<<EOF' >> $GITHUB_ENV
-          cat tmp.txt >> $GITHUB_ENV
+          cat ./tmp.txt >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
           
  
