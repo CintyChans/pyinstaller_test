@@ -67,14 +67,21 @@ jobs:
         with: 
           path: ./artifact
           
- 
-      - name: Release
-        
-        uses: softprops/action-gh-release@v1
+      - name: Create Release
+        uses: nickatnight/releases-action@v4
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          tag_name: ${{github.ref_name}}
+          branch: ${{github.ref_name}}
           name: ${{github.ref_name}}
-          body: "${{env.NOTE}}"
-          draft: false
-          prerelease: false
-          files: ./artifact/${{ runner.os }}_pyinstaller/*
+          message: "${{env.NOTE}}"
+       
+#       - name: Release
+        
+#         uses: softprops/action-gh-release@v1
+#         with:
+#           tag_name: ${{github.ref_name}}
+#           name: ${{github.ref_name}}
+#           body: "${{env.NOTE}}"
+#           draft: false
+#           prerelease: false
+#           files: ./artifact/${{ runner.os }}_pyinstaller/*
