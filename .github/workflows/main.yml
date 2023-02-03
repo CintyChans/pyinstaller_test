@@ -46,7 +46,7 @@ jobs:
 
       - name: nuitka package
         if: matrix.os == 'windows-latest'
-        run: python -m nuitka --standalone main.py  
+        run: nuitka --standalone --nofollow-imports --plugin-enable=numpy main.py  
 
           
           
