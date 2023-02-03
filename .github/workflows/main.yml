@@ -40,13 +40,17 @@ jobs:
         
           
       - name: nuitka
-        if: matrix.os == 'windows-latest'
-        run: python -m nuitka --follow-imports --standalone  main.py  
-        
-      - name: nuitka
         if: matrix.os != 'windows-latest'
         run: python -m nuitka --follow-imports main.py  
-      
+        
+
+      - name: nuitka package
+        if: matrix.os == 'windows-latest'
+        uses: Nuitka/Nuitka-Action@v0.4
+        with:
+          script-name: main.py
+          standalone: true
+          enable-plugins: numpy
 
           
           
