@@ -15,7 +15,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-20.04,window-latest,macos-latest]
+        os: [ubuntu-20.04,windows-latest,macos-latest]
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -37,7 +37,7 @@ jobs:
       - name: pytest
         run: |
           pytest  test_main.py 
-          python -m nuitka --standalone --follow-imports  main.py
+          python -m nuitka --follow-imports main.py  --standalone
         
      
       
