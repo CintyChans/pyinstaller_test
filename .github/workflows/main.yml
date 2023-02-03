@@ -36,9 +36,9 @@ jobs:
         run: pytest  test_main.py 
      
       
-      - name: pyinstaller package
-        if: github.ref_type=='tag'
-        run: nuitka --standalone --show-progress --nofollow-imports --include-package=confluent_kafka,argparse,shapely,paho.mqtt.client,scipy --plugin-enable=numpy main.py
+      - name: nuitka package
+       # if: github.ref_type=='tag'
+        run: nuitka --standalone --show-progress --nofollow-imports --follow-import-to=test_pb --include-package=confluent_kafka,argparse,shapely,paho.mqtt.client,scipy --plugin-enable=numpy main.py
           
 #       - name: note
 #         if: github.ref_type=='tag'
