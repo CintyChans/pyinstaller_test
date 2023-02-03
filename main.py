@@ -1,13 +1,12 @@
+import confluent_kafka 
+import time
 from shapely.geometry import *
 import argparse
 import numpy as np
 import time
 from scipy import constants
 import paho.mqtt.client as mqtt
-import confluent_kafka as kafka
 from test_pb2 import *
-
-
 class f1():
     def __init__(self):
         super().__init__()
@@ -35,6 +34,7 @@ def f2():
     person.id=1
     print(person.id)
     return person
+
 def f3():
     if __name__ == "__main__":
         parser = argparse.ArgumentParser(description='Demo of argparse')
@@ -59,17 +59,20 @@ def f6():
     print(p)
     return p
 
+
+
 def f7():
     try:
         conf = {'bootstrap.servers':'127.0.0.1:9092', 'group.id':f"utc_{time.time()}",'session.timeout.ms': 6000,'auto.offset.reset': 'latest', 'enable.auto.commit': True} 
         topics ='kafka'
-        consumer = kafka.Consumer(conf) 
+        consumer = confluent_kafka.Consumer(conf) 
         consumer.subscribe([topics])
-        msg = consumer.poll(timeout=1.0) 
+        print(1)
         while 1:         
             msg = consumer.poll(timeout=1.0)   
             try:
                 if msg is None:
+                    print("msg is None")
                     break
                 else:
                     print('kafka_recieve:',msg.value())
@@ -78,7 +81,7 @@ def f7():
                 break
     except Exception as e:
         print(e)
-          
+        
 if __name__=='__main__':
     f1()
     f2()
