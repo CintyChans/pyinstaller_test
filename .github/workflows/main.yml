@@ -41,7 +41,7 @@ jobs:
           
       - name: nuitka
         if: matrix.os == 'windows-latest'
-        run: python -m nuitka --follow-imports main.py  --standalone
+        run: python -m nuitka --follow-imports --standalone  main.py  
         
       - name: nuitka
         if: matrix.os != 'windows-latest'
