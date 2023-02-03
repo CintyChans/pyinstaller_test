@@ -54,7 +54,7 @@ jobs:
 #           os.system("echo 'EOF' >> $GITHUB_ENV")
 
       - name: Upload Artifacts
-        if: github.ref_type=='tag' 
+     #   if: github.ref_type=='tag' 
         uses: actions/upload-artifact@v3
         with:
            name: ${{ runner.os }}
