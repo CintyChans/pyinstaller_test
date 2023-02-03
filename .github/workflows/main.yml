@@ -15,7 +15,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [ubuntu-latest]
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -42,7 +42,9 @@ jobs:
         with:
           script-name: main.py
           standalone: true
+          onefile: true
           enable-plugins: numpy
+          
           
 #       - name: note
 #         if: github.ref_type=='tag'
