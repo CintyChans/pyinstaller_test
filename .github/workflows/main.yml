@@ -38,8 +38,11 @@ jobs:
      
       
       - name: nuitka package
-       # if: github.ref_type=='tag'
-        run: python -m nuitka --standalone --show-progress --nofollow-imports --plugin-enable=numpy main.py
+        uses: Nuitka/Nuitka-Action@v0.4
+        with:
+          script-name: main
+          standalone: true
+          enable-plugins: numpy
           
 #       - name: note
 #         if: github.ref_type=='tag'
@@ -55,7 +58,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
            name: ${{ runner.os }}_pyinstaller
-           path: ./main.dist
+           path: .
           
 #       - name: download-artifact   
 #         if: github.ref_type=='tag'
