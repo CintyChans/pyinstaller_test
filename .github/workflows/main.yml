@@ -37,9 +37,15 @@ jobs:
       - name: pytest
         run: |
           pytest  test_main.py 
-          python -m nuitka --follow-imports main.py  --standalone
         
-     
+          
+      - name: nuitka
+        if: matrix.os == 'windows-latest'
+        run: python -m nuitka --follow-imports main.py  --standalone
+        
+      - name: nuitka
+        if: matrix.os != 'windows-latest'
+        run: python -m nuitka --follow-imports main.py  
       
 
           
