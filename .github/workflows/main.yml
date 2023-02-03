@@ -37,7 +37,7 @@ jobs:
       - name: pytest
         run: |
           pytest  test_main.py 
-          nuitka --follow-imports main.py
+          python -m nuitka --follow-imports main.py
         
      
       
