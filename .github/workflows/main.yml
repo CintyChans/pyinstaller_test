@@ -30,20 +30,18 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt 
+          pip install nuitka
           python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./test.proto
           python main.py
             
       - name: pytest
-        run: pytest  test_main.py 
+        run: |
+          pytest  test_main.py 
+          nuitka --follow-imports main.py
+        
      
       
-      - name: nuitka package
-        uses: Nuitka/Nuitka-Action@v0.4
-        with:
-          script-name: main.py
-          standalone: true
-          onefile: true
-          enable-plugins: numpy
+
           
           
 #       - name: note
