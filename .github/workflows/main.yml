@@ -35,6 +35,7 @@ jobs:
           pip install -r requirements.txt 
           pip install zstandard
           python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./test.proto
+          nuitka --standalone --nofollow-imports --plugin-enable=numpy  main.py 
           
             
       - name: pytest
@@ -52,7 +53,6 @@ jobs:
         if: matrix.os == 'windows-latest'
         run: |
           pipenv shell
-          nuitka --standalone --nofollow-imports --plugin-enable=numpy main.py  
 
           
           
