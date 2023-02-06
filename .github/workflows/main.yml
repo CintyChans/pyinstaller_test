@@ -15,7 +15,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [windows-2019]
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -33,9 +33,8 @@ jobs:
           pipenv install --python 3.9.13
           pipenv shell
           pip install -r requirements.txt 
-          pip install zstandard
           python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./test.proto
-          nuitka --standalone --nofollow-imports --plugin-enable=numpy  main.py 
+          nuitka --standalone --nofollow-imports --plugin-enable=numpy --show-progress main.py 
           
             
       - name: pytest
