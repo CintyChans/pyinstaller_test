@@ -29,14 +29,20 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+          pip install pipenv
+          pipenv install --python 3.9.13
+          
+      - name: xx 
+        run: |
+          pipenv shell
           pip install -r requirements.txt 
           pip install zstandard
           python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./test.proto
-          python main.py
-            
-      - name: pytest
-        run: |
           pytest  test_main.py 
+            
+#       - name: pytest
+#         run: |
+#           pytest  test_main.py 
         
           
 #      - name: nuitka
@@ -44,9 +50,9 @@ jobs:
 #        run: python -m nuitka --follow-imports main.py  
         
 
-      - name: nuitka package
-        if: matrix.os == 'windows-latest'
-        run: nuitka --standalone --nofollow-imports --plugin-enable=numpy main.py  
+#       - name: nuitka package
+#         if: matrix.os == 'windows-latest'
+#         run: nuitka --standalone --nofollow-imports --plugin-enable=numpy main.py  
 
           
           
@@ -59,12 +65,12 @@ jobs:
 #           tmp=[os.system("echo '{}' >> $GITHUB_ENV".format(n)) for n in note]
 #           os.system("echo 'EOF' >> $GITHUB_ENV")
 
-      - name: Upload Artifacts
-     #   if: github.ref_type=='tag' 
-        uses: actions/upload-artifact@v3
-        with:
-           name: ${{ runner.os }}
-           path: .
+#       - name: Upload Artifacts
+#      #   if: github.ref_type=='tag' 
+#         uses: actions/upload-artifact@v3
+#         with:
+#            name: ${{ runner.os }}
+#            path: .
           
 #       - name: download-artifact   
 #         if: github.ref_type=='tag'
