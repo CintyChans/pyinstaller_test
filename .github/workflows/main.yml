@@ -15,16 +15,16 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [windows-2019]
+        os: [ubuntu-20.04]
 
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up Python 3.9.7
+      - name: Set up Python 3.9.13
         uses: actions/setup-python@v4 
         with:
-          python-version: '3.9.7'
+          python-version: '3.9.13'
         
       - name: Install dependencies
         run: |
@@ -32,12 +32,11 @@ jobs:
           pip install clcache 
           pip install -r requirements.txt 
           python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./test.proto
-          python -m nuitka --standalone --onefile --nofollow-imports --plugin-enable=numpy --show-progress main.py 
+          python -m nuitka --standalone --plugin-enable=numpy --show-progress main.py 
           
             
       - name: pytest
         run: |
-          pipenv shell
           pytest  test_main.py 
         
           
