@@ -29,7 +29,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-
+          pip install clcache 
           pip install -r requirements.txt 
           python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./test.proto
           python -m nuitka --standalone --onefile --nofollow-imports --plugin-enable=numpy --show-progress main.py 
