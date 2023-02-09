@@ -7,5 +7,4 @@ protobuf==4.21.12
 grpcio-tools==1.51.1
 shapely==1.8.5
 pytest==7.2.1
-GEOS==0.2.3
-nuitka==1.4.3
+pyinstaller
