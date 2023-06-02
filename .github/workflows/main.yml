@@ -1,21 +1,17 @@
 
-name: Python application
+name: los application
 
 on:
   push:
-   branches: ["main"]
-   tags: 
-     - v[0-9]+.[0-9]+
-     - v[0-9]+.[0-9]+.[0-9]+
-     - v[0-9]+.[0-9]+.[0-9]+.[0-9]+
-     
+   branches: ["los"]
 
+     
 #设置操作系统
 jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ windows-latest]
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -29,47 +25,19 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt 
-          python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./test.proto
             
-      - name: pytest
-        run: pytest  test_main.py 
-     
 
       - name: pyinstaller package
-        if: github.ref_type=='tag'
-        run: pyinstaller  -F main.py -n ${{ runner.os }}_test
+        run: pyinstaller  los_evaluator.py
 
-      - name: note
-        if: github.ref_type=='tag'
-        shell: python 
-        run: |
-          import json;import os;f=open('releasenotes.json',"r");obj=json.load(f);note=[i['notes'] for i in obj['tags_releasenotes'] if i['name']=='${{github.ref_name}}'];f.close();note=[note[0] if note else ''][0];
-          os.system("echo 'NOTE<<EOF' >> $GITHUB_ENV")
-          tmp=[os.system("echo '{}' >> $GITHUB_ENV".format(n)) for n in note]
-          os.system("echo 'EOF' >> $GITHUB_ENV")
 
       - name: Upload Artifacts
-        if: github.ref_type=='tag' 
         uses: actions/upload-artifact@v3
         with:
-           name: ${{ runner.os }}_pyinstaller
-           path: ./dist
-
-      - name: download-artifact   
-        if: github.ref_type=='tag'
-        uses: actions/download-artifact@v3
-        with: 
-          path: ./artifact
-
-      - name: Create Release
-        if: github.ref_type=='tag' 
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{github.ref_name}}
-          name: ${{github.ref_name}}
-          body: ${{env.NOTE}}
-          prerelease: false
-          draft: false
-          files: ./artifact/${{ runner.os }}_pyinstaller/*
+           name: "los"
+           path:  |
+             ./dist/*
+             ./config.yaml
+             ./model.joblib
 
 
