@@ -4,3 +4,5 @@ pyinstaller
 joblib==1.2.0
 pyaml==23.5.9
 scikit-learn==1.2.2
+protobuf==4.21.12
+grpcio-tools==1.51.1
